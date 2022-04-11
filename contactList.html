@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        #navBar{
+            display: flex;
+            justify-content: space-evenly;
+           padding: 1%;
+           box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        }
+        a{
+            text-decoration: none;
+            color: teal;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="navBar">
+        <div> <a href="./index.html">Home</a></div>
+        <div><a href="./contactList.html">Contact List</a></div>
+        <div><a href="./favourite.html">Favourites</a></div>
+    </div>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Contact Name</th>
+                    <th>Mobile Number</th>
+                    <th>Type</th>
+                    <th>favourites</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+            </tbody>
+        </table>
+    </div>
+</body>
+<script>
+  var contacts=JSON.parse(localStorage.getItem("contactList"));
+  function displayData(contactList) {
+      document.querySelector("tableBody").innerHTML="";
+      contacts.forEach(contact => {
+          var row = document.createElement("tr");
+
+          var td1 = document.createElement("td");
+          td1.innerText = contact.name;
+
+          var td2 =document.createElement("td");
+          td2.innerText = contact.mobileNumber;
+
+          var td3 = document.createElement("td");
+          td3.innerText= contact.type;
+
+          var td4 = document.createElement("td");
+          td4.innerText = "favourites";
+
+          row.append(td1,td2,td3,td4)
+          document.querySelector("#tableBody").append(row);
+      });
+    }
+      window.addEventListener('load' , function(){
+          displayData(contactList);
+      });
+</script>
+</html>
