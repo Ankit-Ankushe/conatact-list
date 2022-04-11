@@ -47,8 +47,8 @@
 </body>
 <script>
   var contacts=JSON.parse(localStorage.getItem("contactList"));
+
   function displayData(contactList) {
-      document.querySelector("tableBody").innerHTML="";
       contacts.forEach(contact => {
           var row = document.createElement("tr");
 
@@ -63,13 +63,16 @@
 
           var td4 = document.createElement("td");
           td4.innerText = "favourites";
+          td4.style.color='blue';
 
+         
           row.append(td1,td2,td3,td4)
           document.querySelector("#tableBody").append(row);
       });
     }
       window.addEventListener('load' , function(){
-          displayData(contactList);
+          displayData(contacts);
+          localStorage.setItem("favourites" , JSON.stringify(fav))
       });
 </script>
 </html>
